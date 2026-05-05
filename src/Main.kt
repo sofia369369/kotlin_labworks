@@ -1,6 +1,5 @@
 
 fun main() {
-    print("Привет! Я проверила, что Git и GitHub работают.")
 
     val a = 5
     val b = 5
