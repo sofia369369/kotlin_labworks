@@ -1,4 +1,3 @@
-
 fun main() {
     val number = 12
     val divisors = mutableListOf<Int>()
