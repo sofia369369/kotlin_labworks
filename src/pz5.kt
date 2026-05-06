@@ -1,30 +1,26 @@
 fun main() {
-    // Читаем строку и превращаем в число
-    print("Введите число N: ")
-    val input = readLine()
-    val N = input!!.toInt()
+    val N = 20
 
-    val primes = mutableListOf<Int>()
+    //true — число простое (пока все простые)
+    val isPrime = BooleanArray(N + 1) { it >= 2 }
 
-    var num = 2
-    while (num <= N) {
-
-        var isSimple = true
-        var delitel = 2
-        while (delitel < num) {
-            if (num % delitel == 0) {
-                isSimple = false   // нашли делитель — число не простое
+    // Алгоритм: зачёркиваем кратные
+    var i = 2
+    while (i * i <= N) {
+        if (isPrime[i]) {
+            var j = i * i
+            while (j <= N) {
+                isPrime[j] = false
+                j += i
             }
-            delitel = delitel + 1
         }
-
-            //составляем в список
-        if (isSimple == true) {
-            primes.add(num)
-        }
-
-        num = num + 1
+        i++
     }
 
+    //  простые числа в список
+    val primes = mutableListOf<Int>()
+    for (num in 2..N) {
+        if (isPrime[num]) primes.add(num)
+    }
     println("Простые числа: $primes")
 }
